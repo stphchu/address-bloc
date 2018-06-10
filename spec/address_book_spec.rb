@@ -208,4 +208,16 @@ RSpec.describe AddressBook do
       end
       
    end
+   
+   #Test "Nuke" option to erase all entries
+   describe "#nuke" do
+      it "deletes all the entries" do
+         book.import_from_csv("entries.csv")
+         book_size = book.entries.size
+         expect(book_size).to eq 5
+      
+         book.nuke
+         expect(book_size).to eq 0
+      end
+   end
 end

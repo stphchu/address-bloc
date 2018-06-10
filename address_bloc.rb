@@ -1,4 +1,4 @@
-require_relative '../controllers/menu_controller'
+require_relative 'controllers/menu_controller'
  
 # #4
 menu = MenuController.new

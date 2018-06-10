@@ -14,7 +14,8 @@ class MenuController
      puts "3 - Search for an entry"
      puts "4 - Import entries from a CSV"
      puts "5 - View Entry Number n"
-     puts "6 - Exit"
+     puts "6 - Nuke all entries"
+     puts "7 - Exit"
      print "Enter your selection: "
  
      selection = gets.to_i
@@ -42,6 +43,10 @@ class MenuController
          search_entry_number
          main_menu
       when 6
+         system "clear"
+         nuke_entries
+         main_menu
+      when 7
          puts "Good-bye!"
          # #8
          exit(0)
@@ -217,4 +222,25 @@ class MenuController
             search_submenu(entry)
       end
    end
+   
+   def nuke_entries
+      print "Nuke entries? **This will erase all current entries** (Y/N): "
+      confirmation = gets.chomp
+      
+      case confirmation.downcase
+         when "y"
+            address_book.nuke
+            system "clear"
+            puts "\n** All entries have been erased **\n\n"
+            main_menu
+            
+         when "n"
+            system "clear"
+            main_menu
+         else
+            puts "Not a valid response\n\n"
+            nuke_entries
+      end
+   end
+   
 end
